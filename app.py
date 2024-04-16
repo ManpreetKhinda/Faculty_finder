@@ -21,7 +21,7 @@ semantic_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
 @st.cache_data
 def load_data():
-    with open("facultydetails.json", encoding="utf-8") as f:
+    with open("facultydetaila1.json", encoding="utf-8") as f:
         return json.load(f)
 
 faculty_data = load_data()
@@ -38,7 +38,10 @@ def find_matching_faculties(prompt):
     
     expanded_description = expand_project_description(prompt)
     # Extract keywords from the expanded description
-    # st.write(expanded_description)
+    st.write("")  # Add empty line to separate search results from clear button
+    st.markdown("### Below is the detailed prompt used for recommendation:- ")
+    st.write("")
+    st.write(expanded_description)
     query_keywords = extract_keywords(expanded_description)
     
     faculty_matches = []
@@ -131,12 +134,12 @@ def main():
         if prompt:
             matching_faculty_details = find_matching_faculties(prompt)
             # final_details=validate_and_explain_matches_with_gemini(matching_faculty_details, prompt)
-            st.markdown("### Top 5 Matching Faculties based on keywords:")
+            st.markdown("### Best Matching Faculties for above query are:- ")
             for faculty_name, similarity, faculty_info in matching_faculty_details:
                 st.write(f"**Name:** {faculty_name} (Similarity: {similarity:.4f})")
-                st.write(f"**Designation:** {faculty_info['Designation']}")
+                # st.write(f"**Designation:** {faculty_info['Designation']}")
                 st.write(f"**Department:** {faculty_info['Department']}")
-                st.write(f"**Email:** {faculty_info['Email']}")
+                st.write(f"**Email:** {faculty_info['Email ID']}")
                 # st.write(f"**Response:** {response}")
                 st.write("---")
             st.write("")  # Add empty line to separate search results from clear button
