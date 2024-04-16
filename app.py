@@ -21,7 +21,7 @@ semantic_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
 @st.cache_data
 def load_data():
-    with open("facultydetaila1.json", encoding="utf-8") as f:
+    with open("facultydetails.json", encoding="utf-8") as f:
         return json.load(f)
 
 faculty_data = load_data()
